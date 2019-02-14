@@ -87,18 +87,18 @@ def parse_file(path,encode = 'utf-8'):
                 spouse ='NA'
                 chil = famID
             if 'DEAT' in indi[key]:
-                death = datetime.strptime(indi[key]['DEAT'],'%d%b%Y')
+                death = datetime.strptime(indi[key]['DEAT'],'%d%b%Y').date()
             else:
                 death ='NA'
 
             age = age_cal(indi[key]['BIRT'])
-            indiTable.add_row([indi[key]['id'],indi[key]['name'],indi[key]['sex'], datetime.strptime(indi[key]['BIRT'],'%d%b%Y'), age, death, chil, spouse])
+            indiTable.add_row([indi[key]['id'],indi[key]['name'],indi[key]['sex'], datetime.strptime(indi[key]['BIRT'],'%d%b%Y').date(), age, death, chil, spouse])
 
 
         famTable =pt(['ID','Married','Divorced','Husband ID','Husband Name','Wife ID','Wife name','Children'])
         for key in sorted(fam):
             if 'DIV' in fam[key]:
-                div = datetime.strptime(fam[key]['DIV'],'%d%b%Y')
+                div = datetime.strptime(fam[key]['DIV'],'%d%b%Y').date()
 
             else: 
                 div = "NA"
@@ -123,7 +123,7 @@ def parse_file(path,encode = 'utf-8'):
                 chil = "NA"
 
             if 'MARR' in fam[key]:
-                marr = datetime.strptime(fam[key]['MARR'],'%d%b%Y')
+                marr = datetime.strptime(fam[key]['MARR'],'%d%b%Y').date()
             else:
                 marr = "NA"
 
@@ -134,7 +134,7 @@ def parse_file(path,encode = 'utf-8'):
     return {'fam':fam, 'indi':indi}
 
 
-r = parse_file("D:\goole download\My-Family-27-Jan-2019-230.ged")   
+r = parse_file("D:\workspace\GED_file\My-Family-27-Jan-2019-230.ged")   
 #r=parse_file('D:\workspace\sample_test.ged')
 print(r)          
        
