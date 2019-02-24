@@ -30,19 +30,19 @@ ind5 ={'I01':
 }
 class Test_US03(unittest.TestCase):	
     def death_before_marrige(self):                           
-        self.assertTrue(ind2)
-        self.assertFalse(ind3)
+        self.assertTrue(us03(ind2))
+        self.assertFalse(us03(ind3))
 
     def test_birth_before_death(self):
         self.assertFalse(us03(ind1))
         self.assertTrue(us03(ind2))
 
     def no_death(self):
-        self.assertTrue(ind3)
-        self.assertTrue(ind4)
+        self.assertTrue(us03(ind3))
+        self.assertTrue(us03(ind4))
 
     def no_birth(self):
-        self.assertTrue(ind5)
+        self.assertTrue(us03(ind5))
 	
 
 		
