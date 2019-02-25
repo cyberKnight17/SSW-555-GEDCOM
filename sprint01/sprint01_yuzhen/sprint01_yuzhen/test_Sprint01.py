@@ -1,5 +1,5 @@
 import unittest
-from us05us03 import check_birth_death_marri as us03, marrige_before_death as us05
+from us05us03 import check_birth_death as us03, marrige_before_death as us05
 ind1 = {'I01': {'id': 'I01', 'name': 'Joe /Smith/', 'BIRT': '15JUL2015', 'sex': 'M', 'family': 'F23', 'DEAT': '31DEC2013',},
 		'I07': {'id': 'I07', 'name': 'Jennifer /Smith/', 'BIRT': '23SEP1960', 'sex': 'F', 'family': 'F23', 'DEAT': '31DEC2011',},
 		'I19': {'id': 'I19', 'name': 'Dick /Smith/', 'BIRT': '13FEB1999','sex': 'M', 'family': 'F23', 'DEAT': '31DEC2013'}
