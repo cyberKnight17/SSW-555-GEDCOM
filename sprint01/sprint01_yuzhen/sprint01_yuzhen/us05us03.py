@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def check_birth_death_marri(indi): #us03 and us05
+def check_birth_death(indi): #us03 and us05
     res = True
 
     for i in indi:
