@@ -148,11 +148,17 @@ def parse_file(path,encode = 'utf-8'):
         
         print(indiTable)
         print(famTable)
+        us05us03.check_birth_death(indi)                    
+        us05us03.marrige_before_death(indi,fam)
+        user10.marrAfter14(fam,indi)
+        user04.us04(marr_str,div_str,hubName,wifeName)
 
     return {'fam':fam, 'indi':indi}
 
 
-r = parse_file('Project03-TestFile.ged')   
+r = parse_file('Project03-TestFile.ged')
+user0108.userStory01(r)   
+user0108.userStory08(r)
 #r=parse_file('D:\workspace\sample_test.ged')
 #print(r)          
        
