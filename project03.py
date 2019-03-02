@@ -1,5 +1,10 @@
 from datetime import datetime
 from prettytable import PrettyTable as pt
+import os,sys
+from pair_programming import us09,us22
+#from UserStory08 import userStory08
+from sprint01 import us05us03,user0108,user04,user10
+#from us05us03 import marrige_before_death
 
 valid = {
     '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
@@ -25,7 +30,10 @@ def parse_file(path,encode = 'utf-8'):
         currentDate = ''
         currentInd = ''
         currentFam = ''
-        for line in ged_file:    
+        num = 0
+
+        for line in ged_file:
+            num += 1    
             word_list = line.strip().split()
             arguments = ''.join(word_list[2:])
             tag = 'NA'
@@ -56,7 +64,8 @@ def parse_file(path,encode = 'utf-8'):
                     if level == '1' and tag == 'BIRT' or tag == 'DEAT':
                         currentDate = tag 
                     if level == '2' and currentDate != '' and tag == 'DATE':   # store birth date or death date
-                        indi[currentInd][currentDate] = arguments   
+                        indi[currentInd][currentDate] = arguments
+                        indi[currentInd][currentDate+'_rec'] = num   
 
                     if level == '1' and tag == 'SEX':   # store sex
                         indi[currentInd]['sex'] = arguments   
@@ -76,6 +85,7 @@ def parse_file(path,encode = 'utf-8'):
                         currentDate = tag
                     if level == '2' and tag == 'DATE':
                         fam[currentFam][currentDate] =arguments
+                        fam[currentFam][currentDate+'_rec'] = num
                     if level == '1' and tag in ('HUSB','WIFE'):   # store role in the family, husband or wife
                         fam[currentFam][tag] = arguments
                     if level == '1' and tag == 'CHIL':   # store children in the family
@@ -144,21 +154,44 @@ def parse_file(path,encode = 'utf-8'):
             else:
                 marr_str = "NA"
 
+            if div_str != 'NA' and marr_str!='NA':
+                user04.us04(marr,div,hubName,wifeName)
+
+            #us09
+            cnt=0
+            if chil != 'NA':
+                for i in fam[key]['CHIL']:
+                    if 'DEAT' in indi[fam[key]['WIFE']]:
+                        us09.birth_before_parents_death(indi[i]['name'],i,indi[i]['BIRT'],\
+                            indi[fam[key]['WIFE']]['DEAT'],True)
+                    elif 'DEAT' in indi[fam[key]['HUSB']]:
+                        us09.birth_before_parents_death(indi[i]['name'],i,indi[i]['BIRT'],\
+                           indi[fam[key]['HUSB']]['DEAT'],False)
+                    cnt += 1
+
+
             famTable.add_row([key, marr_str, div_str, hubID, hubName, wifeID, wifeName, chil])
         
         print(indiTable)
         print(famTable)
+        us22.unique_id(indi,fam)
         us05us03.check_birth_death(indi)                    
         us05us03.marrige_before_death(indi,fam)
         user10.marrAfter14(fam,indi)
         user04.us04(marr_str,div_str,hubName,wifeName)
 
+
+
     return {'fam':fam, 'indi':indi}
 
 
-r = parse_file('Project03-TestFile.ged')
+
+r = parse_file('D:\goole download\My-Family-1-Mar-2019-869.ged')
 user0108.userStory01(r)   
 user0108.userStory08(r)
 #r=parse_file('D:\workspace\sample_test.ged')
-#print(r)          
+
+
+#print(r)
+       
        
