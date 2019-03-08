@@ -35,20 +35,15 @@ def marrige_before_death(ind,fam):
             wife_id = fam[f]['WIFE']
             marr_date = datetime.strptime(fam[f]['MARR'],"%d%b%Y")
             marr_str = marr_date.strftime('%Y-%m-%d')
-        if hus_id in ind:
-            if 'DEAT' not in ind[hus_id]:
-                print('%s is alive and married!\n'%hus_id)
-            else:
+        if hus_id in ind or wife_id in ind:
+            if 'DEAT' in ind[hus_id]:
                 death_date = datetime.strptime(ind[hus_id]['DEAT'],"%d%b%Y")
                 death_str = death_date.strftime('%Y-%m-%d')
                 if marr_date > death_date:
                     print('ERROR:US05,%d:%s death date %s happened beofore marrige %s'%\
-                         (fam[f]['MARR_rec'],hus_id,death_str,marr_str),)
+                         (fam[f]['MARR_rec'],hus_id,death_str,marr_str))
                     res=False 
-        if wife_id in ind:
-            if 'DEAT' not in ind[wife_id]:
-                print('%s is alive and married!\n'%wife_id)
-            else:
+            if 'DEAT' in ind[wife_id]:
                 death_date = datetime.strptime(ind[wife_id]['DEAT'],"%d%b%Y")
                 death_str = death_date.strftime('%Y-%m-%d')
                 if marr_date > death_date :
