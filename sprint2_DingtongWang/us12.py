@@ -29,7 +29,7 @@ def parents_not_too_old(ind, fam):
 
                         if interval_wife_child.days/365 > 60:
                             res = False
-                            print('ERROR:US12, %s, %s: %s is more than 80 years older then his child %s'%
+                            print('ERROR:US12, %s, %s: %s is more than 60 years older then his child %s'%
                                   (wife_id, child_id, wife_id, child_id))
 
     return res
