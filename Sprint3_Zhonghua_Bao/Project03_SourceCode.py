@@ -159,7 +159,7 @@ def parse_file(path,encode = 'utf-8'):
     return {'fam':fam, 'indi':indi}
 
 
-r = parse_file('Project03-TestFile.ged') 
+r = parse_file('Project01_Zhonghua_Bao.ged') 
 print(r)  
 #r=parse_file('D:\workspace\sample_test.ged')
 userStory21(r)
