@@ -1,10 +1,8 @@
 from datetime import datetime
 from prettytable import PrettyTable as pt
 import os,sys
-from pair_programming import us09,us22
-#from UserStory08 import userStory08
-from sprint01 import us05us03,user0108,user04,user10
-#from us05us03 import marrige_before_death
+from user_story import us01, us02, us03us05, us04, us06, us08, us09, us10, us11, us12, us13, us15, us17, us21, us22, \
+    us23, us24, us25, us27, us30, us31, us32, us35
 
 valid = {
     '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
@@ -13,10 +11,16 @@ valid = {
 } # dictionary stores valid tags
 
 
-def age_cal(birthday): # calculate individual's age
+def age_cal(indi,birthday): # calculate individual's age = us27
     birthdate = datetime.strptime(birthday, '%d%b%Y')
     current = datetime.today()
-    return current.year - birthdate.year - ((current.month, current.day) < (birthdate.month, birthdate.day))
+    for i in indi:
+        if 'DEAT'not in indi[i]:
+            return current.year - birthdate.year - ((current.month, current.day) < (birthdate.month, birthdate.day))
+        else:
+            deathdate = datetime.strptime(indi[i]['DEAT'],'%d%b%Y')
+            return deathdate.year - birthdate.year -((deathdate.month, deathdate.day) <(birthdate.month, birthdate.day))
+
 
 def parse_file(path,encode = 'utf-8'):
     """read the file from the path, based on level and tag scratch the information line by line and store in the dictionary,
@@ -116,7 +120,7 @@ def parse_file(path,encode = 'utf-8'):
             else:
                 spouse = 'NA'
 
-            age = age_cal(indi[key]['BIRT'])
+            age = age_cal(indi,indi[key]['BIRT'])
             indiTable.add_row([indi[key]['id'],indi[key]['name'],indi[key]['sex'], birth_str, age, death_str, child, spouse])
 
         # define the schema to print family table
@@ -155,43 +159,67 @@ def parse_file(path,encode = 'utf-8'):
                 marr_str = "NA"
 
             if div_str != 'NA' and marr_str!='NA':
-                user04.us04(marr,div,hubName,wifeName)
+                us04.us04(marr,div,hubName,wifeName)
 
             #us09
-            cnt=0
+            cnt = 0
             if chil != 'NA':
                 for i in fam[key]['CHIL']:
-                    if 'DEAT' in indi[fam[key]['WIFE']]:
+                    if 'DEAT' in indi[fam[key]['WIFE']] and indi[fam[key]["WIFE"]]["DEAT"] != 'NA':
                         us09.birth_before_parents_death(indi[i]['name'],i,indi[i]['BIRT'],\
                             indi[fam[key]['WIFE']]['DEAT'],True)
-                    elif 'DEAT' in indi[fam[key]['HUSB']]:
+                    elif 'DEAT' in indi[fam[key]['HUSB']] and indi[fam[key]["HUSB"]]["DEAT"]  != 'NA':
                         us09.birth_before_parents_death(indi[i]['name'],i,indi[i]['BIRT'],\
                            indi[fam[key]['HUSB']]['DEAT'],False)
+                        indi[fam[key]["HUSB"]]["DEAT"]
                     cnt += 1
 
 
             famTable.add_row([key, marr_str, div_str, hubID, hubName, wifeID, wifeName, chil])
-        
+
         print(indiTable)
         print(famTable)
-        us22.unique_id(indi,fam)
-        us05us03.check_birth_death(indi)                    
-        us05us03.marrige_before_death(indi,fam)
-        user10.marrAfter14(fam,indi)
-        user04.us04(marr_str,div_str,hubName,wifeName)
+        us02.birth_before_marriage(indi, fam)
+        us03us05.check_birth_death(indi)
+        us03us05.marrige_before_death(indi,fam)
+        us06.divorce_before_death(indi,fam)
+        us10.marrAfter14(fam,indi)
+        us12.parents_not_too_old(indi,fam)
+        us13.siblings_spacing(indi,fam)
+        us15.fewer_than_15_siblings(fam)
+        us23.usstory23(indi)
+        us24.unique_families_by_spouses(indi,fam)
+        us25.usstory25(fam,indi)
+        us30.us30(fam,indi)
+        us31.us31(fam,indi)
+        us35.print_recent_births(indi)
+
+    return {'fam':fam,'indi':indi}
 
 
-
-    return {'fam':fam, 'indi':indi}
-
-
-
-r = parse_file('D:\goole download\My-Family-1-Mar-2019-869.ged')
-user0108.userStory01(r)   
-user0108.userStory08(r)
-#r=parse_file('D:\workspace\sample_test.ged')
-
-
-#print(r)
-       
-       
+if __name__ == '__main__':
+    r1 = parse_file('GEDCOM_file_for_testing/test_data1.ged')
+    r2 = parse_file('GEDCOM_file_for_testing/test_data2.ged')
+    r3 = parse_file('GEDCOM_file_for_testing/test_data3.ged')
+    us01.userStory01(r1)
+    us08.userStory08(r1)
+    us11.userStory11(r1)
+    us17.userStory17(r1)
+    us21.userStory21(r1)
+    us22.unique_id(r1)
+    us32.userStory32(r1)
+    us01.userStory01(r2)
+    us08.userStory08(r2)
+    us11.userStory11(r2)
+    us17.userStory17(r2)
+    us21.userStory21(r2)
+    us22.unique_id(r2)
+    us32.userStory32(r2)
+    us01.userStory01(r3)
+    us08.userStory08(r3)
+    us11.userStory11(r3)
+    us17.userStory17(r3)
+    us21.userStory21(r3)
+    us22.unique_id(r3)
+    us32.userStory32(r3)
+   
