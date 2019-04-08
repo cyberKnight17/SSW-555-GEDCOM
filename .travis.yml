@@ -2,7 +2,10 @@ language:python
 python:
   -'3.7'
 install:
-  -pip install requests
-  
+  - pip install requests
+  - pip install PrettyTable
+  - pip install python-dateutil
 script:
-  -python -m unittest test_Sprint01
+  - cd test_for_user_story
+  - python test_us05us03.py
+  - python test_us22us09.py
