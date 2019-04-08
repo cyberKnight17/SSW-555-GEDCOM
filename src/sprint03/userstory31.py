@@ -3,6 +3,7 @@ def us31(fam,indi):
     marriedlist=[]
     allpeoplelist=[]
     singlelist=[]
+    namelist = []
     #print('person living and single')
     for i in fam:
         if 'DIV' not in fam[i] and 'WIFE' in fam[i] and 'HUSB' in fam[i] :
@@ -15,5 +16,6 @@ def us31(fam,indi):
         singlelist=[item for item in allpeoplelist if item not in marriedlist]
     for x in singlelist:
         print(f'US31:{indi[x]["id"]} is living and single.')
-
+        namelist.append(indi[x]['name'])
+    return namelist
 
