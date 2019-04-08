@@ -36,3 +36,28 @@ def dateCompare(checkdate,comparedate):
             return False
         else:
             return True
+
+
+class Homework04Test(unittest.TestCase):
+    def test_dateVerify(self):
+        self.assertIsNone(dateVerify(123))
+        self.assertIsNone(dateVerify('123'))
+        self.assertIsNone(dateVerify('48OCT2019'))
+        self.assertIsNone(dateVerify('31FEB2019'))
+        self.assertIsNone(dateVerify('10FEB2019.2'))
+        self.assertTrue(dateVerify('01JAN2019'))
+        self.assertTrue(dateVerify('24FEB2019'))
+        self.assertFalse(dateVerify('1MAR2020'))
+        self.assertIsNone(dateVerify('29FEB2100'))
+    
+    def test_dateCompare(self):
+        self.assertTrue(dateCompare('25FEB2019','24FEB2019'))
+        self.assertFalse(dateCompare('19FEB2019','24FEB2019'))
+        self.assertFalse(dateCompare('24FEB2019','24FEB2019'))
+        self.assertIsNone(dateCompare('29FEB2019','24FEB2019'))
+        self.assertIsNone(dateCompare(123,'24FEB2019'))
+        self.assertIsNone(dateCompare('123','24FEB2019'))
+        
+
+if __name__ == '__main__':
+    unittest.main(verbosity=2)  

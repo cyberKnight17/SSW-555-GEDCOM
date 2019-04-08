@@ -7,7 +7,7 @@ def unique_id(result):
     indi,fam = result['indi'],result['fam']
     for i in indi.keys():
         if indi[i]['id'] in indi_list:
-            error = 'ERROR:US22 %s this individual id already exist'%i
+            error = '%s this individual id already exist'%i
             print(error)
             erro_loc = [i]
             flag = False
@@ -17,7 +17,7 @@ def unique_id(result):
 
     for f in fam.keys():
         if fam[f]['fam'] in fam_list:
-            error = 'ERROR:US22 %s this family id already exist'%f
+            error = '%s this family id already exist'%f
             print(error)
             erro_loc = [i]
             flag = False

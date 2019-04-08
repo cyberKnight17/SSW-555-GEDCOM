@@ -9,11 +9,11 @@ def birth_before_parents_death(childname,childID,childbirthday,parentsdeathdate,
         parentsdeath = datetime.strptime(parentsdeathdate,'%d%b%Y')
         interval = ((birthdate - parentsdeath).days/365)*12   #timedelta between child birth and parents death
         if interval>9:
-            error = "ERROR Us09: Birthday of child %s%s is longer than 9 months after father's death\n"%(childID,childname)
+            error = "ERROR US09: Birthday of child %s%s is longer than 9 months after father's death\n"%(childID,childname)
             print(error)
             return error
     elif ((datetime.strptime(childbirthday,'%d%b%Y'))>(datetime.strptime(parentsdeathdate,'%d%b%Y'))):
-        error ="ERROR Us09: Birthday of child %s %s is after their mother's death.\n"%(childID,childname)
+        error ="ERROR US09: Birthday of child %s %s is after their mother's death.\n"%(childID,childname)
         print(error)
         return error
         

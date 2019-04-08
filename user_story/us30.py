@@ -10,6 +10,6 @@ def us30(fam, indi):
     # get married couple id
     for m in marriedlist:
         if 'DEAT' not in indi[m]:
-            print(f'US30{indi[m]["id"],indi[m]["name"]} is living and married.')
+            print(f'US30{indi[m]["name"]} is living and married.')
             namelist.append(indi[m]['name'])
     return namelist

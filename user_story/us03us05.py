@@ -18,6 +18,12 @@ def check_birth_death(indi): #us03
         
     return res
 
+#ind1 = {'I26': {'id': 'I26', 'name': 'Jane /Smith/', 'BIRT': '13FEB1998', 'sex': 'F', 'family': 'F23','DEAT': '31DEC2013','MARR':'15MAR2016'},}
+
+#s= check_birth_death_marri(ind1)
+
+
+
 
 def marrige_before_death(ind,fam):
     res = True
@@ -31,8 +37,7 @@ def marrige_before_death(ind,fam):
             marr_str = marr_date.strftime('%Y-%m-%d')
         if hus_id in ind:
             if 'DEAT' not in ind[hus_id]:
-                pass
-                #print('%s is alive and married!\n'%hus_id)
+                print('%s is alive and married!\n'%hus_id)
             else:
                 death_date = datetime.strptime(ind[hus_id]['DEAT'],"%d%b%Y")
                 death_str = death_date.strftime('%Y-%m-%d')
@@ -42,8 +47,7 @@ def marrige_before_death(ind,fam):
                     res=False 
         if wife_id in ind:
             if 'DEAT' not in ind[wife_id]:
-                #print('%s is alive and married!\n'%wife_id)
-                pass
+                print('%s is alive and married!\n'%wife_id)
             else:
                 death_date = datetime.strptime(ind[wife_id]['DEAT'],"%d%b%Y")
                 death_str = death_date.strftime('%Y-%m-%d')
