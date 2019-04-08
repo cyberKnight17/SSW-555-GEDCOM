@@ -99,7 +99,7 @@ def parse_file(path,encode = 'utf-8'):
                             fam[currentFam][tag] = {arguments}
 
         # define the schema to print individual table
-        indiTable = pt(["ID", "NAME", "Gender", "BDay", "Age", "Death", "Child", "Spouse"])
+        indiTable = pt(["ID", "NAME", "Gender", "Birthday", "US27:Age", "Death", "Child", "Spouse"])
         for key in indi.keys():
             birth = datetime.strptime(indi[key]['BIRT'],'%d%b%Y')  # print birth date
             birth_str = birth.strftime('%Y-%m-%d')
@@ -199,8 +199,6 @@ def parse_file(path,encode = 'utf-8'):
 
 if __name__ == '__main__':
     r1 = parse_file('GEDCOM_file_for_testing/test_data1.ged')
-    r2 = parse_file('GEDCOM_file_for_testing/test_data2.ged')
-    r3 = parse_file('GEDCOM_file_for_testing/test_data3.ged')
     us01.userStory01(r1)
     us08.userStory08(r1)
     us11.userStory11(r1)
@@ -208,18 +206,4 @@ if __name__ == '__main__':
     us21.userStory21(r1)
     us22.unique_id(r1)
     us32.userStory32(r1)
-    us01.userStory01(r2)
-    us08.userStory08(r2)
-    us11.userStory11(r2)
-    us17.userStory17(r2)
-    us21.userStory21(r2)
-    us22.unique_id(r2)
-    us32.userStory32(r2)
-    us01.userStory01(r3)
-    us08.userStory08(r3)
-    us11.userStory11(r3)
-    us17.userStory17(r3)
-    us21.userStory21(r3)
-    us22.unique_id(r3)
-    us32.userStory32(r3)
-   
+
