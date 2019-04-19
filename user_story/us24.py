@@ -28,14 +28,14 @@ def unique_families_by_spouses(ind, fam):
             if husb2 == husb1 and wife2 == wife1 and "MARR" in fam[f2] and "MARR" in fam[f] and fam[f2]["MARR"] == fam[f]["MARR"]:
                 count = count +1
                 if count > 1: #once count add means there are two familes' marry date, wife, and husband have problems
-                    print(f"ERROR US24: Two families share the same wife of {wife1} and the same husband of {husb1} and marriage date of {fam[f2]['MARR']}\n")
+                    print(f"ERROR at line {fam[f2]['fam_rec']} US24: Two families share the same wife of {wife1} and the same husband of {husb1} and marriage date of {fam[f2]['MARR']}\n")
                     return False
     return return_flag
 
 
 fam = {'F23': 
-  {'fam': 'F23', 'MARR': '14 FEB 1980', 'HUSB': 'I01', 'WIFE': 'I07', 'CHIL': ['I19', 'I26', 'I30']},
-   'F16': {'fam': 'F16', 'MARR': '14 FEB 1980', 'HUSB': 'I01', 'WIFE': 'I07', 'CHIL': ['I19', 'I26', 'I30']}}
+  {'fam': 'F23','fam_rec':'200','MARR': '14 FEB 1980', 'HUSB': 'I01', 'WIFE': 'I07', 'CHIL': ['I19', 'I26', 'I30']},
+   'F16': {'fam': 'F16', 'fam_rec':'22','MARR': '14 FEB 1980', 'HUSB': 'I01', 'WIFE': 'I07', 'CHIL': ['I19', 'I26', 'I30']}}
 ind = {'I01': {'id': 'I01', 'name': 'Joe /Smith/', 'BIRT': '15 JUL 1960', 'sex': 'M', 'family': 'F23', 'DEAT': '31 DEC 2013'},
  'I07': {'id': 'I07', 'name': 'Jennifer /Smith/', 'BIRT': '23 SEP 1960', 'sex': 'F', 'family': 'F23'},
  'I19': {'id': 'I19', 'name': 'Dick /Smith/', 'BIRT': '13 FEB 1981', 'sex': 'M', 'family': 'F23'},
@@ -44,8 +44,8 @@ ind = {'I01': {'id': 'I01', 'name': 'Joe /Smith/', 'BIRT': '15 JUL 1960', 'sex':
   'I32': {'id': 'I32', 'name': 'Nick /Tary/', 'BIRT': '13 FEB 1981', 'sex': 'M', 'family': 'F23'},
   'I44': {'id': 'I44', 'name': 'Cersi /Lanister/', 'BIRT': '13 FEB 1981', 'sex': 'F', 'family': 'F23'}}
 fam2 = {'F23': 
-  {'fam': 'F23', 'MARR': '14 FEB 1980', 'HUSB': 'I01', 'WIFE': 'I07', 'CHIL': ['I19', 'I26', 'I30']},
-   'F16': {'fam': 'F16', 'MARR': '12 DEC 2007'}}
+  {'fam': 'F23', 'fam_rec':'19','MARR': '14 FEB 1980', 'HUSB': 'I01', 'WIFE': 'I07', 'CHIL': ['I19', 'I26', 'I30']},
+   'F16': {'fam': 'F16', 'fam_rec':'8','MARR': '12 DEC 2007'}}
 
 
 class MyTest(unittest.TestCase):
