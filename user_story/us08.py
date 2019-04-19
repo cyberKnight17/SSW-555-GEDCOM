@@ -1,6 +1,6 @@
 from datetime import datetime
 from datetime import timedelta
-from Homework04_Zhonghua_Bao import dateVerify,dateCompare
+from user_story import Homework04_Zhonghua_Bao as zhb
 
 def userStory08(result):
     """implementing user story 08, the child birthday should not be earlier the parent's marriage date, and not be later than 9 months after the parent's divorce date if applicable
@@ -18,7 +18,7 @@ def userStory08(result):
                     if 'MARR' not in fam[key]:
                         continue
                     else:
-                        if dateCompare(indi[item]['BIRT'],fam[key]['MARR']) == False:   # child birthday earlier than parent's marriage date
+                        if zhb.dateCompare(indi[item]['BIRT'],fam[key]['MARR']) == False:   # child birthday earlier than parent's marriage date
                             birth = datetime.strptime(indi[item]['BIRT'],'%d%b%Y')
                             birth_str = birth.strftime('%Y-%m-%d')
                             marr = datetime.strptime(fam[key]['MARR'],'%d%b%Y')
@@ -35,7 +35,7 @@ def userStory08(result):
                         if expire_day.startswith('0'):   # string use 01 for 1, for later comparison without error, skip 0
                             expire_day = expire_day[1:]
                                                
-                        if dateCompare(indi[item]['BIRT'],expire_day) == True:
+                        if zhb.dateCompare(indi[item]['BIRT'],expire_day) == True:
                             birth = datetime.strptime(indi[item]['BIRT'],'%d%b%Y')
                             birth_str = birth.strftime('%Y-%m-%d')
                             div_str = div.strftime('%Y-%m-%d')

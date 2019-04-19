@@ -2,7 +2,7 @@ from datetime import datetime
 from prettytable import PrettyTable as pt
 import os,sys
 from user_story import us01, us02, us03us05, us04, us06, us08, us09, us10, us11, us12, us13, us15, us17, us21, us22, \
-    us23, us24, us25, us27, us30, us31, us32, us35
+    us23, us24, us25, us27, us30, us31, us32, us35,us36,us38
 
 valid = {
     '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
@@ -61,10 +61,12 @@ def parse_file(path,encode = 'utf-8'):
                     currentInd = word_list[1]
                     IsIND = True
                     indi[currentInd] = {'id':word_list[1]}   # key for each individual
+                    indi[currentInd]['indi_rec'] = num
 
                 if IsIND:    # information about the individual if true
                     if level == '1' and tag == 'NAME':
                         indi[currentInd]['name'] = arguments   # store name
+                        indi[currentInd]['name_rec'] = num
                     if level == '1' and tag == 'BIRT' or tag == 'DEAT':
                         currentDate = tag 
                     if level == '2' and currentDate != '' and tag == 'DATE':   # store birth date or death date
@@ -83,6 +85,7 @@ def parse_file(path,encode = 'utf-8'):
                     IsIND = False
                     currentFam = word_list[1]
                     fam[currentFam] = {'fam':currentFam}   # store key for the family dictionary
+                    fam[currentFam]['fam_rec'] = num
                     
                 if IsIND == False:
                     if level == '1' and word_list[1] == 'MARR' or word_list[1] == 'DIV':   # store marriage date and divorce date
@@ -92,6 +95,7 @@ def parse_file(path,encode = 'utf-8'):
                         fam[currentFam][currentDate+'_rec'] = num
                     if level == '1' and tag in ('HUSB','WIFE'):   # store role in the family, husband or wife
                         fam[currentFam][tag] = arguments
+                        fam[currentFam][tag+'_rec'] = num
                     if level == '1' and tag == 'CHIL':   # store children in the family
                         if tag in fam[currentFam]:
                             fam[currentFam][tag].add(arguments)
@@ -99,7 +103,7 @@ def parse_file(path,encode = 'utf-8'):
                             fam[currentFam][tag] = {arguments}
 
         # define the schema to print individual table
-        indiTable = pt(["ID", "NAME", "Gender", "Birthday", "US27:Age", "Death", "Child", "Spouse"])
+        indiTable = pt(["ID", "NAME", "Gender", "BDay", "Age", "Death", "Child", "Spouse"])
         for key in indi.keys():
             birth = datetime.strptime(indi[key]['BIRT'],'%d%b%Y')  # print birth date
             birth_str = birth.strftime('%Y-%m-%d')
@@ -162,14 +166,14 @@ def parse_file(path,encode = 'utf-8'):
                 us04.us04(marr,div,hubName,wifeName)
 
             #us09
-            cnt = 0
+            cnt=0
             if chil != 'NA':
                 for i in fam[key]['CHIL']:
                     if 'DEAT' in indi[fam[key]['WIFE']] and indi[fam[key]["WIFE"]]["DEAT"] != 'NA':
-                        us09.birth_before_parents_death(indi[i]['name'],i,indi[i]['BIRT'],\
+                        us09.birth_before_parents_death(indi,indi[i]['name'],i,indi[i]['BIRT'],\
                             indi[fam[key]['WIFE']]['DEAT'],True)
                     elif 'DEAT' in indi[fam[key]['HUSB']] and indi[fam[key]["HUSB"]]["DEAT"]  != 'NA':
-                        us09.birth_before_parents_death(indi[i]['name'],i,indi[i]['BIRT'],\
+                        us09.birth_before_parents_death(indi,indi[i]['name'],i,indi[i]['BIRT'],\
                            indi[fam[key]['HUSB']]['DEAT'],False)
                         indi[fam[key]["HUSB"]]["DEAT"]
                     cnt += 1
@@ -193,6 +197,8 @@ def parse_file(path,encode = 'utf-8'):
         us30.us30(fam,indi)
         us31.us31(fam,indi)
         us35.print_recent_births(indi)
+        us36.us36(indi)
+        us38.us38(indi)
 
     return {'fam':fam,'indi':indi}
 
