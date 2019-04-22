@@ -204,7 +204,7 @@ def parse_file(path,encode = 'utf-8'):
 
 
 if __name__ == '__main__':
-    r1 = parse_file('GEDCOM_file_for_testing/test_data1.ged')
+    r1 = parse_file('GEDCOM_file_for_testing/test_data.ged')
     us01.userStory01(r1)
     us08.userStory08(r1)
     us11.userStory11(r1)
@@ -212,5 +212,3 @@ if __name__ == '__main__':
     us21.userStory21(r1)
     us22.unique_id(r1)
     us32.userStory32(r1)
-    print(r1)
-
