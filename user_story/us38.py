@@ -39,7 +39,7 @@ def us38(indi):
                 if 0 <= (abs(individual_current_birthday - today)).days <= 30:
                     table.add_row([individual["id"], individual["name"], individual_birthday])
                     result = True
-        print('Individuals whose birthday within next 30 days:\n',table)
+        print('US38 Individuals whose birthday within next 30 days:\n',table)
         return result
 
 ind = {'I01': {'id': 'I01', 'name': 'Joe /Smith/', 'BIRT': '15MAY1960', 'sex': 'M', 'family': 'F23', 'DEAT': '31DEC2013'},

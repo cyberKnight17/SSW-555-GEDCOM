@@ -201,8 +201,8 @@ def parse_file(path,encode = 'utf-8'):
         us35.print_recent_births(indi)
         us36.us36(indi)
         us38.us38(indi)
-        us37.us37(fam,indi)
-        us39.us39(fam,indi)
+        us37.us37(fam, indi)
+        us39.us39(fam, indi)
 
     return {'fam':fam,'indi':indi}
 
