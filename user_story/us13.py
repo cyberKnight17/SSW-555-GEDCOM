@@ -25,8 +25,8 @@ def siblings_spacing(ind, fam):
         for key2 in child_birth_dict.keys():
             interval = child_birth_dict[key1] - child_birth_dict[key2]
             if interval.days/30 < 8 and interval.days > 2:
-                print('ERROR:US13, %s, %s: Birth dates of siblings should be more than 8 months apart '
-                      'or less than 2 days apart' % (key1, key2))
+                print('ERROR: FAMILY: US13: %s: %s, %s: Birth dates of siblings should be more than 8 months apart '
+                      'or less than 2 days apart' % (fam[f]['fam_rec'], key1, key2))
                 res = False
 
     return res

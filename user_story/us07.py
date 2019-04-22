@@ -15,6 +15,6 @@ def less_than_150_years_old(ind):
                 age = (death - birth).days/365
             if age > 150:
                 res = False
-                print('Error: INDIVIDUAL: US07：%s is more than 150 years old'%ind[id]['id'])
+                print('Error: INDIVIDUAL: US07：%s: %s is more than 150 years old'% (ind[id]['indi_rec'],ind[id]['id']))
 
     return res

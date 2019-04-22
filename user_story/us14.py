@@ -18,6 +18,6 @@ def mutible_birth(ind, fam):
 
     if len(child_birth_list) - len(child_birth_set) > 3:
         res = False
-        print('Error: US14: FAMILY %s have 5 or more children born at the same time'%fam[f]['fam'])
+        print('Error: US14: FAMILY: %s: %s have 5 or more children born at the same time' % (fam[f]['fam_rec'], fam[f]['fam']))
 
     return res

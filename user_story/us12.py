@@ -24,12 +24,12 @@ def parents_not_too_old(ind, fam):
 
                         if interval_hus_child.days/365 > 80:
                             res = False
-                            print('ERROR:US12, %s, %s: %s is more than 80 years older then his child %s' %
-                                  (hus_id, child_id, hus_id, child_id))
+                            print('ERROR: US12: Individual: %s: %s, %s: %s is more than 80 years older then his child %s' %
+                                  (ind[hus_id]['indi_rec'], hus_id, child_id, hus_id, child_id))
 
                         if interval_wife_child.days/365 > 60:
                             res = False
-                            print('ERROR:US12, %s, %s: %s is more than 60 years older then his child %s'%
-                                  (wife_id, child_id, wife_id, child_id))
+                            print('ERROR:US12: Individual: %s: %s, %s: %s is more than 60 years older then his child %s'%
+                                  (ind[wife_id]['indi_rec'], wife_id, child_id, wife_id, child_id))
 
     return res

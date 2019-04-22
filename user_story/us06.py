@@ -17,7 +17,7 @@ def divorce_before_death(ind,fam):
                     res = True
                 else:
                     if div_date > datetime.strptime(ind[hus_id]['DEAT'],"%d%b%Y"):
-                        print('ERROR:US06,%s:%s divorce date %s happened after death %s'%\
+                        print('ERROR: FAMILY: US06: %s: %s divorce date %s happened after death %s'%\
                              (fam[f]['DIV_rec'],ind[hus_id]['id'],ind[hus_id]['BIRT'],ind[hus_id]['DEAT']))
                         res = False
 
@@ -26,8 +26,8 @@ def divorce_before_death(ind,fam):
                     res = True
                 else:
                     if div_date > datetime.strptime(ind[wife_id]['DEAT'],"%d%b%Y"):
-                        print('ERROR:US06,%s:%s divorce date %s happened after death %s'%\
-                             (fam[f]['DIV_rec'],ind[wife_id]['id'],ind[wife_id]['BIRT'],ind[wife_id]['DEAT']))
+                        print('ERROR: FAMILY: US06: %s: %s divorce date %s happened after death %s'%\
+                             (fam[f]['fam_rec'],ind[wife_id]['id'],ind[wife_id]['BIRT'],ind[wife_id]['DEAT']))
                         res = False
 
     return res

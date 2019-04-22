@@ -17,7 +17,7 @@ def birth_before_marriage(ind, fam):  # us02
                     res = True
                 else:
                     if marr_date < datetime.strptime(ind[hus_id]['BIRT'],"%d%b%Y"):
-                        print('ERROR:US02,%s:%s birth date %s happened after marriage %s'%\
+                        print('ERROR: FAMILY: US02: %s: %s birth date %s happened after marriage %s'%\
                              (fam[f]['MARR_rec'],ind[hus_id]['id'],ind[hus_id]['BIRT'],fam[f]['MARR']))
                         res = False
 
@@ -26,7 +26,7 @@ def birth_before_marriage(ind, fam):  # us02
                     res = True
                 else:
                     if marr_date < datetime.strptime(ind[wife_id]['BIRT'],"%d%b%Y"):
-                        print('ERROR:US02,%s:%s birth date %s happened before marriage %s'%\
+                        print('ERROR: FAMILY: US02: %s: %s birth date %s happened before marriage %s'%\
                              (fam[f]['MARR_rec'],ind[wife_id]['id'],ind[wife_id]['BIRT'],fam[f]['MARR']))
                         res = False
 
