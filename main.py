@@ -1,7 +1,7 @@
 from datetime import datetime
 from prettytable import PrettyTable as pt
 import os,sys
-from user_story import us01, us02, us03us05, us04, us06, us07, us08, us09, us10, us11, us12, us13, us15, us17, us21, us22, \
+from user_story import us01, us02, us03us05, us04, us06, us07, us08, us09, us10, us11, us12, us13, us14, us15, us17, us21, us22, \
     us23, us24, us25, us30, us31, us32, us35, us36, us38, us37, us39
 
 valid = {
@@ -191,6 +191,7 @@ def parse_file(path,encode = 'utf-8'):
         us10.marrAfter14(fam,indi)
         us12.parents_not_too_old(indi,fam)
         us13.siblings_spacing(indi,fam)
+        us14.mutible_birth(indi, fam)
         us15.fewer_than_15_siblings(fam)
         us23.usstory23(indi)
         us24.unique_families_by_spouses(indi,fam)
