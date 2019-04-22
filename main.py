@@ -212,4 +212,5 @@ if __name__ == '__main__':
     us21.userStory21(r1)
     us22.unique_id(r1)
     us32.userStory32(r1)
+    print(r1)
 
