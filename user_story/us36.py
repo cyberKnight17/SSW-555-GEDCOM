@@ -16,7 +16,7 @@ def us36(indi):
         if "DEAT" in person:
             death_date = datetime.strptime(person["DEAT"], '%d%b%Y') 
             if recent_date < death_date and death_date < datetime.now():
-                table.add_row([person["id"], person["name"], person["DEAT"]])
+                table.add_row([person["id"], person["name"], death_date])
                 isThereRecentDeath = True
     print("Individuals dead in last 30 days.\n",table)
     return isThereRecentDeath #return a boolean value for test
