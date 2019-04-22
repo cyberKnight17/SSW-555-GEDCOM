@@ -1,8 +1,8 @@
 from datetime import datetime
 from prettytable import PrettyTable as pt
 import os,sys
-from user_story import us01, us02, us03us05, us04, us06, us08, us09, us10, us11, us12, us13, us15, us17, us21, us22, \
-    us23, us24, us25, us27, us30, us31, us32, us35,us36,us38
+from user_story import us01, us02, us03us05, us04, us06, us07, us08, us09, us10, us11, us12, us13, us15, us17, us21, us22, \
+    us23, us24, us25, us30, us31, us32, us35,us36,us38
 
 valid = {
     '0':(['INDI','FAM'],'HEAD','TRLR','NOTE'),
@@ -187,6 +187,7 @@ def parse_file(path,encode = 'utf-8'):
         us03us05.check_birth_death(indi)
         us03us05.marrige_before_death(indi,fam)
         us06.divorce_before_death(indi,fam)
+        us07.less_than_150_years_old(indi)
         us10.marrAfter14(fam,indi)
         us12.parents_not_too_old(indi,fam)
         us13.siblings_spacing(indi,fam)
