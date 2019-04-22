@@ -41,3 +41,17 @@ def us38(indi):
                     result = True
         print('Individuals whose birthday within next 30 days:\n',table)
         return result
+
+ind = {'I01': {'id': 'I01', 'name': 'Joe /Smith/', 'BIRT': '15MAY1960', 'sex': 'M', 'family': 'F23', 'DEAT': '31DEC2013'},
+ 'I07': {'id': 'I07', 'name': 'Jennifer /Smith/', 'BIRT': '23MAY1960', 'sex': 'F', 'family': 'F23'},
+ 'I19': {'id': 'I19', 'name': 'Dick /Smith/', 'BIRT': '13MAY1981', 'sex': 'M', 'family': 'F23'},
+  'I26': {'id': 'I26', 'name': 'Jane /Smith/', 'BIRT': '13MAY1982', 'sex': 'F', 'family': 'F23'},
+  'I30': {'id': 'I30', 'name': 'Mary /Test/', 'BIRT': '13FEB1987', 'sex': 'F', 'family': 'F23'},
+}
+
+class MyTest(unittest.TestCase):
+    def test(self): 
+        self.assertTrue(us38(ind))
+         
+if __name__ == '__main__':
+    unittest.main()
